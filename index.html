@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wahat Al Khair | Premium Fruits & Vegetables Qatar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header>
+        <div class="navbar">
+            <div class="logo">Wahat Al Khair</div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search fresh produce...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-right">
+                <div class="cart-wrapper" onclick="toggleCart()">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span id="cart-count">0</span>
+                    <span class="cart-text">Cart</span>
+                </div>
+                <button id="adminBtn" class="admin-access" onclick="toggleAdmin()">Admin</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Strip -->
+    <div class="category-strip">
+        <button class="cat-pill active" onclick="filterCategory('All')">All Fresh Items</button>
+        <button class="cat-pill" onclick="filterCategory('Vegetables')">Vegetables</button>
+        <button class="cat-pill" onclick="filterCategory('Fruits')">Fruits</button>
+        <button class="cat-pill" onclick="filterCategory('Leafy Greens')">Leafy Greens</button>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <div class="hero-overlay">
+            <h1>Freshness Guaranteed</h1>
+            <p>From the farm straight to your home in Qatar</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div id="product-grid" class="product-grid">
+            <!-- Product cards will load here -->
+        </div>
+    </main>
+
+    <!-- Side Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Basket</h2>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div id="cart-items-list" class="cart-items-list">
+            <!-- Cart items load here -->
+        </div>
+        <div class="cart-summary">
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span class="total-price">QAR <span id="cart-total">0.00</span></span>
+            </div>
+            <button class="checkout-btn" onclick="showOrderForm()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('order-modal')">&times;</span>
+            <div class="form-header">
+                <i class="fas fa-truck"></i>
+                <h2>Delivery Details</h2>
+            </div>
+            <form id="checkout-form">
+                <input type="text" id="custName" placeholder="Full Name" required>
+                <input type="tel" id="custPhone" placeholder="Phone Number (e.g. 5555 1234)" required>
+                <textarea id="custAddress" placeholder="Full Delivery Address (Street, Zone, Villa/Apt)" required></textarea>
+                <button type="submit" class="place-order-btn">Confirm My Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content admin-box">
+            <span class="close" onclick="closeModal('admin-modal')">&times;</span>
+            <h2>Product Management</h2>
+            <div class="admin-flex">
+                <div class="add-form">
+                    <h3>Add New Item</h3>
+                    <input type="text" id="prodName" placeholder="Item Name (e.g. Tomato)">
+                    <input type="number" id="prodPrice" placeholder="Price (QAR)">
+                    <select id="prodCategory">
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Leafy Greens">Leafy Greens</option>
+                    </select>
+                    <input type="file" id="prodImage" accept="image/*">
+                    <button onclick="uploadProduct()" class="upload-btn">Upload to Shop</button>
+                </div>
+                <div class="inventory-list">
+                    <h3>Current Inventory</h3>
+                    <div id="admin-inventory-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
