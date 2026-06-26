@@ -1,1 +1,0 @@
-# wahat-shop
